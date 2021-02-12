@@ -1,4 +1,4 @@
-package com.dubizzle.dubizzleclassifiedtest
+package com.dubizzle.classified
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

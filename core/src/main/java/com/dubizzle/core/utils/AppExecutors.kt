@@ -1,4 +1,4 @@
-package com.kajangdev.core.utils
+package com.dubizzle.core.utils
 
 import androidx.annotation.VisibleForTesting
 import java.util.concurrent.Executor

@@ -1,11 +1,13 @@
-package com.dubizzle.dubizzleclassifiedtest.utils
+package com.dubizzle.classified.utils
 
 import android.view.View
 
 fun String.checkNull() = if (this.isEmpty()) "Unknown" else this
 
-fun View.visible() {
-    this.visibility = View.VISIBLE
+fun View.visible(visible: Boolean = true) {
+    if (visible)
+        this.visibility = View.VISIBLE
+    else this.visibility = View.INVISIBLE
 }
 
 fun View.gone() {

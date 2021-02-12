@@ -1,4 +1,4 @@
-package com.dubizzle.dubizzleclassifiedtest
+package com.dubizzle.classified
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

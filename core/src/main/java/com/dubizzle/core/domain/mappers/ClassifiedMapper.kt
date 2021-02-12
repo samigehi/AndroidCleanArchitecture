@@ -4,8 +4,8 @@ import com.dubizzle.core.data.source.remote.response.classified.ClassifiedEntity
 
 object ClassifiedMapper {
 
-    fun toClassified(classified: ClassifiedEntity?): com.dubizzle.core.domain.models.ClassifiedAd {
-        return com.dubizzle.core.domain.models.ClassifiedAd(
+    fun toClassified(classified: ClassifiedEntity?): com.dubizzle.core.domain.models.Classified {
+        return com.dubizzle.core.domain.models.Classified(
             classified?.uid,
             classified?.name,
             classified?.price,

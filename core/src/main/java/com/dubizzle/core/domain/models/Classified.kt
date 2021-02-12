@@ -2,7 +2,7 @@ package com.dubizzle.core.domain.models
 
 import java.io.Serializable
 
-data class ClassifiedAd(
+data class Classified(
     var uid: String?, var name: String?,
     var price: String?,
     var createdAt: String? = null,

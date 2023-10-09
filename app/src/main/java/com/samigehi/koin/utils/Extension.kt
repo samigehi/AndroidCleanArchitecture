@@ -1,5 +1,10 @@
 package com.samigehi.koin.utils
 
+import com.samigehi.koin.app.models.ContactListResponseModel
+import com.samigehi.koin.app.models.ContactModel
+import com.samigehi.koin.data.source.local.room.entities.ContactRoomEntity
+import com.samigehi.koin.domain.models.ContactRequestModel
+import com.samigehi.koin.domain.models.ContactResponseModel
 import android.view.View
 
 fun String.checkNull() = if (this.isEmpty()) "Unknown" else this
@@ -16,4 +21,39 @@ fun View.gone() {
 
 fun View.invisible() {
     this.visibility = View.INVISIBLE
+}
+
+fun ContactResponseModel.toContactListResponseModel(): ContactListResponseModel {
+    return ContactListResponseModel(
+        id = id.toString(),
+        name = name ?: "",
+    )
+}
+
+fun List<ContactResponseModel>.mapToContactsToAppModel(): List<ContactModel> {
+    val contacts = ArrayList<ContactModel>()
+    val it = listIterator()
+
+    for (i in it) {
+        if (i.id != null && !i.name.isNullOrBlank()) // check nullability
+            contacts.add(ContactModel(i.id, i.name))
+    }
+
+    return contacts
+}
+
+
+fun ContactRoomEntity.toContactResponseModel(): ContactResponseModel {
+    return ContactResponseModel(
+        id = id!!,
+        name = name,
+    )
+}
+
+
+fun ContactRequestModel.toContactRoomEntity(): ContactRoomEntity {
+    return ContactRoomEntity(
+        id = id,
+        name = name
+    )
 }

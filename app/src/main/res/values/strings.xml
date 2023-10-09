@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dubizzle Classifieds</string>
+    <string name="app_name">Sumeet Compose</string>
     <string name="search_hint">What you are looking for?</string>
     <string name="font_roboto_medium">sans-serif-medium</string>
     <string name="font_roboto_light">sans-serif-light</string>
@@ -10,5 +10,6 @@
     <string name="something_went_wrong">Something went wrong, please try later!</string>
     <string name="no_data_found">No Data Found</string>
     <string name="featured">FEATURED</string>
+    <string name="an_error_occurred">"An error occurred, please try again"</string>
 
 </resources>

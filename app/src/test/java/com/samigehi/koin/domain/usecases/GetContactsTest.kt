@@ -17,7 +17,7 @@ class GetContactsTest {
         val expected = listOf(
             ContactResponseModel(
                 id = 1,
-                name = "Paul"
+                name = "Sumeet"
             )
         )
         whenever(mockContactRepo.getContacts()).thenReturn(expected)

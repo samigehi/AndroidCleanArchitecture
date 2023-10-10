@@ -5,16 +5,7 @@ import com.samigehi.koin.domain.models.ContactResponseModel
 
 object DataMapper {
 
-    fun mapContactsToAppModel(list: List<ContactResponseModel>?): List<ContactModel> {
-        val contacts = ArrayList<ContactModel>()
-
-        list?.let {
-            for (i in it) {
-                if (i.id != null && !i.name.isNullOrBlank()) // check nullability
-                    contacts.add(ContactModel(i.id, i.name))
-            }
-        }
-
-        return contacts
+    fun mapContactsToAppModel(contacts: List<ContactResponseModel>?): List<ContactModel>? {
+        return contacts?.map { ContactModel(it.id ?: -1, it.name ?: "") }
     }
 }

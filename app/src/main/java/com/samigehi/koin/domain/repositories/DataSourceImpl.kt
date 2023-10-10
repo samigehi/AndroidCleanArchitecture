@@ -3,12 +3,13 @@ package com.samigehi.koin.domain.repositories
 import com.samigehi.koin.app.models.ContactModel
 import com.samigehi.koin.data.source.local.LocalSource
 import com.samigehi.koin.data.source.remote.RemoteSource
+import com.samigehi.koin.domain.interfaces.ContactRepository
 import com.samigehi.koin.domain.mappers.DataMapper
 import com.samigehi.koin.domain.models.ContactRequestModel
 import com.samigehi.koin.domain.models.ContactResponseModel
 
 // right now only local/room-db source implemented
-class DataSourceImpl(private val local: LocalSource, private val remote: RemoteSource) {
+class DataSourceImpl(private val local: LocalSource, private val remote: RemoteSource) : ContactRepository {
 
 //    fun getContacts(): List<ContactModel> {
 //        // check here and return contact based on requirements
@@ -19,31 +20,38 @@ class DataSourceImpl(private val local: LocalSource, private val remote: RemoteS
 //        return DataMapper.mapContactsToAppModel(contacts)
 //    }
 
-    suspend fun getContacts(): List<ContactModel> {
-        // check here and return contact based on requirements
+    suspend fun loadContacts(): List<ContactModel> {
+        // check here and return contact based on requirements / business-logic
         // i.e. fetch from network or get from room-database and return
-        var contacts = local.getAllContacts(); // this is suspend function - it will block thread
+        var contacts = getContacts(); // this is suspend function - it will block thread
         //if(contacts.isEmpty())
         //    contacts = remote.getContacts() // if list is empty fetch from server/api
-        return DataMapper.mapContactsToAppModel(contacts) // app layer should not have direct access to data/repo models
+        // app layer should not have direct access to data/repo models - transform / map contacts to app models
+        return DataMapper.mapContactsToAppModel(contacts) ?: listOf()
     }
 
-    suspend fun getContact(id: Int): ContactResponseModel? {
+    override suspend fun getContacts(): List<ContactResponseModel> {
+        // check here and return contact based on requirements / business-logic
+        // i.e. fetch from network or get from room-database and return
+        return local.getAllContacts()
+    }
+
+    override suspend fun getContact(id: Int): ContactResponseModel? {
         // based on condition, do local/remote call
         return local.getOne(id)
     }
 
-    suspend fun deleteContact(id: Int) {
+    override suspend fun deleteContact(id: Int) {
         // based on condition, do local/remote call
         return local.delete(id)
     }
 
-    suspend fun updateContact(id: Int, data: ContactRequestModel) {
+    override suspend fun updateContact(id: Int, data: ContactRequestModel) {
         // based on condition, do local/remote call
         return local.update(id, data)
     }
 
-    suspend fun createContact(data: ContactRequestModel) {
+    override suspend fun createContact(data: ContactRequestModel) {
         // based on condition, do local/remote call
         return local.create(data)
     }

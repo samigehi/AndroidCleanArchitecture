@@ -12,7 +12,7 @@ class GetOneContactTest {
     @Test
     fun should_return_data() = runBlocking {
         val mockContactRepo = mock<ContactRepository>()
-        val expectedResponse = ContactResponseModel(id = 1, name = "Paul")
+        val expectedResponse = ContactResponseModel(id = 1, name = "Sumeet")
         whenever(mockContactRepo.getContact(any())).thenReturn(expectedResponse)
         val useCase = GetOneContact(mockContactRepo)
         val result = useCase.details(1)

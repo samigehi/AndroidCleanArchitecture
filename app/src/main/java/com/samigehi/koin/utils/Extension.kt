@@ -1,11 +1,11 @@
 package com.samigehi.koin.utils
 
+import android.view.View
 import com.samigehi.koin.app.models.ContactListResponseModel
 import com.samigehi.koin.app.models.ContactModel
 import com.samigehi.koin.data.source.local.room.entities.ContactRoomEntity
 import com.samigehi.koin.domain.models.ContactRequestModel
 import com.samigehi.koin.domain.models.ContactResponseModel
-import android.view.View
 
 fun String.checkNull() = if (this.isEmpty()) "Unknown" else this
 
@@ -31,15 +31,14 @@ fun ContactResponseModel.toContactListResponseModel(): ContactListResponseModel 
 }
 
 fun List<ContactResponseModel>.mapToContactsToAppModel(): List<ContactModel> {
-    val contacts = ArrayList<ContactModel>()
-    val it = listIterator()
-
-    for (i in it) {
-        if (i.id != null && !i.name.isNullOrBlank()) // check nullability
-            contacts.add(ContactModel(i.id, i.name))
-    }
-
-    return contacts
+//    val contacts = ArrayList<ContactModel>()
+//    val it = listIterator()
+//
+//    for (i in it) {
+//        if (i.id != null && !i.name.isNullOrBlank()) // check nullability
+//            contacts.add(ContactModel(i.id, i.name))
+//    }
+    return map { ContactModel(it.id ?: -1, it.name ?: "") }
 }
 
 

@@ -14,7 +14,7 @@ class CreateContactTest {
     fun should_return_true() = runBlocking {
         val mockContactRepo = mock<ContactRepository>()
         val useCase = CreateContact(mockContactRepo)
-        val result = useCase.create(ContactRequestModel(name = "Paul"))
+        val result = useCase.create(ContactRequestModel(name = "Sumeet"))
         verify(mockContactRepo, times(1)).createContact(any())
     }
 }

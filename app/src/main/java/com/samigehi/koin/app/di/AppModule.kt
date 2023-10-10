@@ -12,7 +12,6 @@ import com.samigehi.koin.domain.interfaces.usecases.CreateContactUseCase
 import com.samigehi.koin.domain.interfaces.usecases.DeleteContactUseCase
 import com.samigehi.koin.domain.interfaces.usecases.GetAllContactsUseCase
 import com.samigehi.koin.domain.interfaces.usecases.UpdateContactUseCase
-import com.samigehi.koin.domain.repositories.ContactRepositoryImpl
 import com.samigehi.koin.domain.repositories.DataSourceImpl
 import com.samigehi.koin.domain.usecases.contact.CreateContact
 import com.samigehi.koin.domain.usecases.contact.DeleteContact
@@ -57,11 +56,10 @@ object AppModule {
         return DataSourceImpl(providesLocalDataSource(context), RemoteSource(providesApiService()))
     }
 
-
     @Provides
     @Singleton
-    fun providesContactRepository(dataSource: ContactDataSource): ContactRepository {
-        return ContactRepositoryImpl(contactDataSource = dataSource)
+    fun providesContactRepository(localSource: LocalSource, remoteSource: RemoteSource): ContactRepository {
+        return DataSourceImpl(localSource, remoteSource)
     }
 
     @Provides

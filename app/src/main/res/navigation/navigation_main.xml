@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/list_fragment">
+
+    <fragment
+        android:id="@+id/list_fragment"
+        android:name="com.samigehi.koin.app.contacts.fragment.ContactListFragment"
+        android:label="Contacts">
+        <action
+            android:id="@+id/action_list_fragment_to_update_fragment"
+            app:destination="@id/update_fragment" />
+        <action
+            android:id="@+id/action_list_fragment_to_create_fragment"
+            app:destination="@id/create_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/create_fragment"
+        android:name="com.samigehi.koin.app.contacts.fragment.CreateContactFragment"
+        android:label="Create Contact">
+        <action
+            android:id="@+id/action_create_fragment_to_list_fragment"
+            app:destination="@id/list_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/update_fragment"
+        android:name="com.samigehi.koin.app.contacts.fragment.EditContactFragment"
+        android:label="Update Contact"
+
+        >
+        <action
+            android:id="@+id/action_update_fragment_to_list_fragment"
+            app:destination="@id/list_fragment" />
+    </fragment>
+
+</navigation>

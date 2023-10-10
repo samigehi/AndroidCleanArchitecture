@@ -14,7 +14,7 @@ class UpdateContactTest {
     fun should_return_true() = runBlocking {
         val mockContactRepo = mock<ContactRepository>()
         val useCase = UpdateContact(mockContactRepo)
-        val result = useCase.execute(1, ContactRequestModel(name = "Paul"))
+        val result = useCase.update(1, ContactRequestModel(name = "Sumeet"))
         verify(mockContactRepo, times(1)).updateContact(any(), any())
     }
 }

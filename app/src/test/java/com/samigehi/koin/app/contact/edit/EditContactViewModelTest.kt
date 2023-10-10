@@ -40,7 +40,7 @@ class EditContactViewModelTest {
         val mockUpdateUseCase = mock<UpdateContactUseCase>()
         val vm = EditContactViewModel(mockDeleteUseCase, mockUpdateUseCase)
 
-        val result = vm.updateContact(1, ContactRequestModel(name = "Paul"))
+        val result = vm.updateContact(1, ContactRequestModel(name = "Sumeet"))
         assertEquals(vm.isBusy, false)
         assertEquals(vm.errorMessage, "")
     }
@@ -51,7 +51,7 @@ class EditContactViewModelTest {
         val mockUpdateUseCase = mock<UpdateContactUseCase>()
         whenever(mockUpdateUseCase.update(any(), any())).thenThrow()
         val vm = EditContactViewModel(mockDeleteUseCase, mockUpdateUseCase)
-        val result = vm.updateContact(1, ContactRequestModel(name = "Paul"))
+        val result = vm.updateContact(1, ContactRequestModel(name = "Sumeet"))
         assertEquals(vm.isBusy, false)
         assertEquals(vm.errorMessage, "Error Updating Contact")
 

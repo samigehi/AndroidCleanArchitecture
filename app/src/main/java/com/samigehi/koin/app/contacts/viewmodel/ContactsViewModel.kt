@@ -15,7 +15,7 @@ class ContactsViewModel @Inject constructor(private val source: DataSourceImpl) 
     val posts: StateFlow<List<ContactModel>> = mContacts
 
     suspend fun getContacts() {
-        mContacts.value = source.getContacts()
+        mContacts.value = source.loadContacts()
     }
 
 }

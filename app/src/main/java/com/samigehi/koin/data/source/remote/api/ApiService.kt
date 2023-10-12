@@ -1,13 +1,13 @@
 package com.samigehi.koin.data.source.remote.api
 
+import com.samigehi.koin.BuildConfig
 import com.samigehi.koin.domain.models.ContactRequestModel
 import com.samigehi.koin.domain.models.ContactResponseModel
 import okhttp3.OkHttpClient
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Query
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.http.*
+import java.util.concurrent.TimeUnit
 
 interface ApiService {
     @GET("/contacts")
@@ -21,11 +21,30 @@ interface ApiService {
 
     object Factory {
         fun create(): ApiService {
-            TODO("return retrofit api service here")
+            return Retrofit.Builder()
+                .baseUrl("https://www.google.com")
+                //.addConverterFactory(Add Gson or any other Converter Factory)
+                .client(getClient())
+                .build()
+                .create(ApiService::class.java)
         }
 
         fun getClient(): OkHttpClient {
-            TODO("return okhttp client here")
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.level =
+                if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+
+            val client = OkHttpClient.Builder()
+
+            client.connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .addInterceptor(loggingInterceptor)
+            //.authenticator(add Authenticator)
+            //.addInterceptor(add Request Interceptor())
+            //.addInterceptor(add Response Interceptor())
+            return client.build();
         }
 
     }

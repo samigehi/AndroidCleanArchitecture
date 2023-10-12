@@ -7,23 +7,16 @@ import com.samigehi.koin.domain.interfaces.ContactRepository
 import com.samigehi.koin.domain.mappers.DataMapper
 import com.samigehi.koin.domain.models.ContactRequestModel
 import com.samigehi.koin.domain.models.ContactResponseModel
+import com.samigehi.koin.utils.Logger
 
 // right now only local/room-db source implemented
 class DataSourceImpl(private val local: LocalSource, private val remote: RemoteSource) : ContactRepository {
 
-//    fun getContacts(): List<ContactModel> {
-//        // check here and return contact based on requirements
-//        // i.e. fetch from network or get from room-database and return
-//        var contacts = local.getContacts(); // this is suspend function - it will block thread
-//        if(contacts.isEmpty())
-//            contacts = remote.getContacts() // if list is empty fetch from server/api
-//        return DataMapper.mapContactsToAppModel(contacts)
-//    }
-
+    // not implemented
     suspend fun loadContacts(): List<ContactModel> {
         // check here and return contact based on requirements / business-logic
         // i.e. fetch from network or get from room-database and return
-        var contacts = getContacts(); // this is suspend function - it will block thread
+        val contacts = getContacts(); // this is suspend function - it will block thread
         //if(contacts.isEmpty())
         //    contacts = remote.getContacts() // if list is empty fetch from server/api
         // app layer should not have direct access to data/repo models - transform / map contacts to app models

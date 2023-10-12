@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.samigehi.koin.app.base.BaseActivity
 import com.samigehi.koin.app.main.MainComposeActivity
+import com.samigehi.koin.app.main.MainFragmentActivity
 import dagger.hilt.android.AndroidEntryPoint
 
+// Login Use Cases are not implemented yet
 @AndroidEntryPoint
 class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +49,7 @@ class LoginActivity : BaseActivity() {
     }
 
     fun navigateToHome() {
-        startActivity(Intent(this@LoginActivity, MainComposeActivity::class.java))
+        startActivity(Intent(this@LoginActivity, MainFragmentActivity::class.java))
         finish()
     }
 

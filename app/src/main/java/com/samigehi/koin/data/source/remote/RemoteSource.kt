@@ -15,7 +15,7 @@ class RemoteSource(private val api: ApiService) : DataSource() {
     }
 
     override suspend fun getOne(id: Int): ContactResponseModel? {
-        TODO("fetch details of perticular contact ");
+        TODO("fetch details of particular contact ");
     }
 
     override suspend fun delete(id: Int) {
